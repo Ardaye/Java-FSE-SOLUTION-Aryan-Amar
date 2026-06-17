@@ -1,0 +1,63 @@
+# Exercise 1: Implementing the Singleton Pattern
+
+## Objective
+To understand and implement the Singleton Design Pattern in Java.
+
+## Description
+The Singleton Pattern is a creational design pattern that ensures only one instance of a class is created throughout the application and provides a global access point to that instance.
+
+## Files Included
+
+- `Singleton.java` - Contains the Singleton class implementation.
+- `SingletonTest.java` - Contains the test code to verify the Singleton behavior.
+
+## Implementation Details
+
+### Singleton Class
+- Constructor is declared as `private` to prevent direct object creation.
+- A static instance variable is used to store the single object.
+- A public static method `getInstance()` returns the same object every time it is called.
+
+### Test Class
+- Creates two references using `Singleton.getInstance()`.
+- Verifies that both references point to the same object.
+
+## Code Execution
+
+### Compile
+
+```bash
+javac Exercise1/*.java
+```
+
+### Run
+
+```bash
+java Exercise1.SingletonTest
+```
+
+## Sample Output
+
+```text
+Exercise1.Singleton@7344699f
+Exercise1.Singleton@7344699f
+true
+```
+
+## Explanation of Output
+
+- Both references display the same memory address.
+- `true` confirms that both references point to the same object.
+- This verifies that only one instance of the Singleton class exists.
+
+## Learning Outcomes
+
+- Understanding of the Singleton Design Pattern.
+- Use of private constructors.
+- Use of static variables and methods.
+- Object reference comparison using `==`.
+- Implementation of a common creational design pattern.
+
+## Conclusion
+
+The Singleton Pattern was successfully implemented and tested. The output confirms that only one instance of the class is created and shared throughout the application.
