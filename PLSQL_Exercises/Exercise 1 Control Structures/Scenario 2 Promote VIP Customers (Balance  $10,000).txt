@@ -1,0 +1,31 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_customers IS
+        SELECT CustomerID
+        FROM Customers
+        WHERE Balance > 10000;
+    
+    v_customer_id   Customers.CustomerID%TYPE;
+BEGIN
+    OPEN c_customers;
+    LOOP
+        FETCH c_customers INTO v_customer_id;
+        EXIT WHEN c_customers%NOTFOUND;
+        
+        UPDATE Customers
+        SET IsVIP = 'Y'
+        WHERE CustomerID = v_customer_id;
+        
+        DBMS_OUTPUT.PUT_LINE('✓ Customer ' || v_customer_id || ' promoted to VIP.');
+    END LOOP;
+    CLOSE c_customers;
+    
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('✅ Scenario 2 completed.');
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('❌ Error: ' || SQLERRM);
+END;
+/

@@ -1,0 +1,9 @@
+BEGIN
+    EXECUTE IMMEDIATE 'ALTER TABLE Accounts ADD AccountType VARCHAR2(20) DEFAULT ''Checking''';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+UPDATE Accounts SET AccountType = 'Savings' WHERE AccountID = 1;
+UPDATE Accounts SET AccountType = 'Checking' WHERE AccountID = 2;
+COMMIT;

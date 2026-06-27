@@ -1,0 +1,45 @@
+CREATE OR REPLACE PROCEDURE TransferFunds (
+    p_from_account IN Accounts.AccountID%TYPE,
+    p_to_account   IN Accounts.AccountID%TYPE,
+    p_amount       IN NUMBER
+) IS
+    v_source_balance Accounts.Balance%TYPE;
+BEGIN
+    SELECT Balance INTO v_source_balance
+    FROM Accounts
+    WHERE AccountID = p_from_account
+    FOR UPDATE;
+    
+    IF v_source_balance < p_amount THEN
+        DBMS_OUTPUT.PUT_LINE('Insufficient balance. Transfer failed.');
+        RETURN;
+    END IF;
+    
+    UPDATE Accounts
+    SET Balance = Balance - p_amount,
+        LastModified = SYSDATE
+    WHERE AccountID = p_from_account;
+    
+    UPDATE Accounts
+    SET Balance = Balance + p_amount,
+        LastModified = SYSDATE
+    WHERE AccountID = p_to_account;
+    
+    INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+    VALUES ((SELECT NVL(MAX(TransactionID), 0) + 1 FROM Transactions), p_from_account, SYSDATE, p_amount, 'Transfer');
+    
+    INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+    VALUES ((SELECT NVL(MAX(TransactionID), 0) + 2 FROM Transactions), p_to_account, SYSDATE, p_amount, 'Deposit');
+    
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Transfer of $' || p_amount || ' completed from Account ' || 
+                         p_from_account || ' to Account ' || p_to_account || '.');
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error: One or both accounts do not exist.');
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END TransferFunds;
+/

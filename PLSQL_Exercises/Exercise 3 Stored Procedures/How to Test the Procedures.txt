@@ -1,0 +1,12 @@
+SET SERVEROUTPUT ON;
+
+BEGIN
+    ProcessMonthlyInterest;
+    UpdateEmployeeBonus('HR', 10);
+    TransferFunds(1, 2, 200);
+END;
+/
+
+SELECT AccountID, CustomerID, AccountType, Balance, LastModified FROM Accounts;
+SELECT EmployeeID, Name, Department, Salary FROM Employees;
+SELECT * FROM Transactions ORDER BY TransactionDate DESC;

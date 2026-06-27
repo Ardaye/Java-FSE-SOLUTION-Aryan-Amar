@@ -1,0 +1,30 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_loans_due IS
+        SELECT c.Name, l.LoanID, l.EndDate
+        FROM Loans l
+        JOIN Customers c ON l.CustomerID = c.CustomerID
+        WHERE l.EndDate BETWEEN SYSDATE AND SYSDATE + 30;
+    
+    v_customer_name Customers.Name%TYPE;
+    v_loan_id       Loans.LoanID%TYPE;
+    v_end_date      Loans.EndDate%TYPE;
+BEGIN
+    OPEN c_loans_due;
+    LOOP
+        FETCH c_loans_due INTO v_customer_name, v_loan_id, v_end_date;
+        EXIT WHEN c_loans_due%NOTFOUND;
+        
+        DBMS_OUTPUT.PUT_LINE('📩 REMINDER: Customer "' || v_customer_name || 
+                             '" – Loan #' || v_loan_id || 
+                             ' is due on ' || TO_CHAR(v_end_date, 'DD-MON-YYYY') || '.');
+    END LOOP;
+    CLOSE c_loans_due;
+    
+    DBMS_OUTPUT.PUT_LINE('✅ Scenario 3 completed.');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('❌ Error: ' || SQLERRM);
+END;
+/
