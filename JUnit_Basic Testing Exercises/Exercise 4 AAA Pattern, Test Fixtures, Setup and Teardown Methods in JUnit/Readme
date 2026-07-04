@@ -1,0 +1,6 @@
+Exercise 4: Arrange-Act-Assert (AAA) Pattern, Test Fixtures, Setup and Teardown Methods in JUnit
+
+This exercise demonstrates:
+- Using the Arrange-Act-Assert pattern in tests
+- Creating a fresh test fixture with @Before
+- Cleaning up resources with @After
