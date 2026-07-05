@@ -1,0 +1,31 @@
+# Exercise 2: Implementing the Factory Method Pattern
+
+## Objective
+To understand and implement the Factory Method Design Pattern in Java.
+
+## Description
+The Factory Method Pattern is a creational design pattern that delegates object creation to a factory class. It allows the client code to create objects without directly instantiating concrete classes.
+
+## Files Included
+
+- Shape.java
+- Circle.java
+- Rectangle.java
+- ShapeFactory.java
+- FactoryPatternTest.java
+
+## Sample Output
+
+Drawing Circle
+Drawing Rectangle
+
+## Learning Outcomes
+
+- Understanding Factory Method Pattern
+- Interface-based programming
+- Encapsulation of object creation
+- Reduced coupling between client and implementation classes
+
+## Conclusion
+
+The Factory Method Pattern was successfully implemented. The factory class creates and returns the required object based on the input provided by the client.
