@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LibrarySpringBootApp<LibraryManagementEx9>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.library.LibrarySpringBootApp",
+            "projectName": "LibraryManagementEx9",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
