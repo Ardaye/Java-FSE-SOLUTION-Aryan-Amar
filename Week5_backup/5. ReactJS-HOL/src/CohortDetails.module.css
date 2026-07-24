@@ -1,0 +1,21 @@
+/* Step 6: .box class */
+.box {
+  width: 300px;
+  display: inline-block;
+  margin: 10px;               /* overall 10px margin */
+  padding: 10px 20px;         /* top/bottom 10px, left/right 20px */
+  border: 1px solid black;
+  border-radius: 10px;
+  vertical-align: top;        /* to align boxes properly */
+}
+
+/* Step 7: dt tag selector */
+dt {
+  font-weight: 500;
+}
+
+/* Optional: style dd for better spacing */
+dd {
+  margin-left: 0;
+  margin-bottom: 8px;
+}

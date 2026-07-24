@@ -1,0 +1,19 @@
+// src/components/CourseDetails.js
+
+import React from 'react';
+
+const CourseDetails = ({ courses }) => {
+    return (
+        <div className="mystyle1">   {/* from screenshot */}
+            <h1>Course Details</h1>
+            {courses.map((course, index) => (
+                <div key={index}>
+                    <h3>{course.name}</h3>
+                    <p>{course.date}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default CourseDetails;

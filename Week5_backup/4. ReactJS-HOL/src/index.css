@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Layout: three columns */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Each component's container */
+.st2, .v1, .mystyle1 {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.st2 {
+    background-color: #f0f8ff;  /* light blue */
+}
+
+.v1 {
+    background-color: #f5f5dc;  /* beige */
+}
+
+.mystyle1 {
+    background-color: #e6e6fa;  /* lavender */
+}
+
+h1 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+}
